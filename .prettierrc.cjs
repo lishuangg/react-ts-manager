@@ -1,7 +1,7 @@
 module.exports = {
   printWidth: 120,  // 超过最大值换行
   useTabs: false,  // 使用tab缩进还是空格缩进
-  tabWidth: 4,  // tab缩进大小,默认为2
+  tabWidth: 2,  // tab缩进大小,默认为2
   semi: true,  // 句尾是否需要分号
 	singleQuote: true,  // 使用单引号
 	jsxBracketSameLine: false,  // jsx > 是否单独放在一行
