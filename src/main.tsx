@@ -1,11 +1,3 @@
-/*
- * @Author: 李爽
- * @Date: 2025-02-09 20:23:11
- * @LastEditors: 李爽
- * @LastEditTime: 2025-02-09 21:36:22
- * @FilePath: main.tsx
- * @Description:
- */
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
