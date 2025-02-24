@@ -1,11 +1,3 @@
-/*
- * @Author: 李爽
- * @Date: 2025-02-09 20:23:11
- * @LastEditors: 李爽
- * @LastEditTime: 2025-02-20 22:42:11
- * @FilePath: main.tsx
- * @Description:
- */
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
@@ -21,7 +13,7 @@ import {
 } from "react-router-dom";
 // import BaseRouter from "./router1.tsx";
 // import router from "./router2.tsx";
-import router from "./router3.tsx";
+import router from "./router4.tsx";
 
 // createRoot(document.getElementById("root") as HTMLElement).render(
 //   <HashRouter>
