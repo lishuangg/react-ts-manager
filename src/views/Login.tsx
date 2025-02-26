@@ -1,7 +1,18 @@
+import { useEffect } from 'react';
+import request from '@/utils/request';
 export default function Login() {
-  return (
-    <div>
-      <h1>Login</h1>
-    </div>
-  );
+    useEffect(() => {
+        request
+            .get('/api/login', {
+                id: '123'
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }, []);
+    return (
+        <div>
+            <h1>Login</h1>
+        </div>
+    );
 }

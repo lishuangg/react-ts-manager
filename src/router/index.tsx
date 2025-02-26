@@ -1,4 +1,4 @@
-import { Navigate, createHashRouter } from 'react-router-dom';
+import { Navigate, createBrowserRouter, useRoutes } from 'react-router-dom';
 import Login from '@/views/Login';
 import Welcome from '@/views/Welcome';
 import Error404 from '@/views/404';
@@ -27,4 +27,10 @@ const routers = [
     }
 ];
 
-export default createHashRouter(routers);
+// 组件路由
+// export default function Router() {
+//     return useRoutes(routers)
+// }
+
+// api路由
+export default createBrowserRouter(routers);
