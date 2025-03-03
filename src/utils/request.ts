@@ -50,10 +50,10 @@ instance.interceptors.response.use(
 );
 
 export default {
-  get(url: any, params: any) {
+  get<T>(url: any, params?: object): Promise<T> {
     return instance.get(url, { params }); // get请求的参数需要params包裹
   },
-  post(url: string, params: any) {
+  post<T>(url: string, params: any): Promise<T> {
     return instance.post(url, params);
   }
 };

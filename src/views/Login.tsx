@@ -3,7 +3,7 @@ import request from '@/utils/request';
 export default function Login() {
     useEffect(() => {
         request
-            .get('/api/login', {
+            .post<string>('/api/login', {
                 id: '123'
             })
             .catch(err => {
