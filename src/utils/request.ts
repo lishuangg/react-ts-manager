@@ -2,8 +2,11 @@ import { message } from 'antd';
 import axios, { AxiosError } from 'axios';
 import { hideLoading, showLoading } from './loading';
 import storage from './storage';
+import env from '../config';
 
-console.log(import.meta.env);
+console.log(env);
+
+// console.log(import.meta.env);
 
 // 创建实例对象
 const instance = axios.create({
@@ -22,10 +25,12 @@ instance.interceptors.request.use(
     if (token) {
       config.headers.Authorization = token;
     }
-    if(import.meta.env.VITE_MOCK === true) {
-      config.baseURL = import.meta.env.VITE_MOCK_API;
+    if(env.mock) {
+      // config.baseURL = import.meta.env.VITE_MOCK_API;
+      config.baseURL = env.mockApi;
     }else {
-      config.baseURL = import.meta.env.VITE_BASE_API;
+      // config.baseURL = import.meta.env.VITE_BASE_API;
+      config.baseURL = env.baseApi;
     }
     return { ...config };
   },
