@@ -1,11 +1,3 @@
-/*
- * @Author: 李爽
- * @Date: 2025-02-09 21:21:48
- * @LastEditors: 李爽
- * @LastEditTime: 2025-02-09 21:28:00
- * @FilePath: router1.tsx
- * @Description: 
- */
 import { useRoutes, Link, Navigate } from "react-router-dom";
 import App from "./App";
 

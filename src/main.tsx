@@ -11,8 +11,9 @@ import {
   Navigate,
   RouterProvider,
 } from "react-router-dom";
-import BaseRouter from "./router1.tsx";
-import router from "./router2.tsx";
+// import BaseRouter from "./router1.tsx";
+// import router from "./router2.tsx";
+import router from "./router4.tsx";
 
 // createRoot(document.getElementById("root") as HTMLElement).render(
 //   <HashRouter>
