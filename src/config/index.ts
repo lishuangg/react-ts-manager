@@ -17,9 +17,9 @@ const env = document.documentElement.dataset.env as ENV || 'dev';
 const config = {
   dev: {
     baseApi: '/api',
-    uploadApi: 'http://api-driver-dev.marsview.cc',
+    uploadApi: 'http://api-driver.marsview.cc',
     cdn:'',
-    mock: true,
+    mock: false,
     mockApi: 'https://www.fastmock.site/mock/9f89b4fc35334e712e27b22f008fb4d9/ts'
   },
   stg: {

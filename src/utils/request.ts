@@ -1,8 +1,9 @@
-import { message } from 'antd';
 import axios, { AxiosError } from 'axios';
 import { hideLoading, showLoading } from './loading';
 import storage from './storage';
 import env from '../config';
+import { Result } from '@/types/api';
+import { message } from './AntdGlobal';
 
 console.log(env);
 
@@ -23,12 +24,13 @@ instance.interceptors.request.use(
     showLoading();
     const token = storage.get('token');
     if (token) {
-      config.headers.Authorization = token;
+      config.headers.Authorization = 'Token::' + token;
     }
-    if(env.mock) {
+    config.headers.icode = '';
+    if (env.mock) {
       // config.baseURL = import.meta.env.VITE_MOCK_API;
       config.baseURL = env.mockApi;
-    }else {
+    } else {
       // config.baseURL = import.meta.env.VITE_BASE_API;
       config.baseURL = env.baseApi;
     }
@@ -44,10 +46,10 @@ instance.interceptors.response.use(
   response => {
     console.log('响应拦截器');
     hideLoading();
-    const { data } = response;
+    const data: Result = response.data;
     if (data.code === 500001) {
       message.error(data.msg);
-      localStorage.removeItem('token');
+      storage.remove('token');
       window.location.href = '/login';
     } else if (data.code != 0) {
       message.error(data.msg);

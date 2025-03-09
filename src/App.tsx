@@ -1,8 +1,9 @@
 import { BrowserRouter, RouterProvider } from 'react-router';
-import { ConfigProvider } from 'antd';
+import { ConfigProvider, App as AntdApp } from 'antd';
 import router from './router';
 // import Router from './router';
 import './App.css';
+import AntdGlobal from './utils/AntdGlobal';
 
 function App() {
   // 组件路由
@@ -16,7 +17,10 @@ function App() {
         }
       }}
     >
-      <RouterProvider router={router} />
+      <AntdApp>
+        <AntdGlobal /> 
+        <RouterProvider router={router} />
+      </AntdApp>
     </ConfigProvider>
   );
 }
