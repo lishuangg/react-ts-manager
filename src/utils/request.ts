@@ -21,6 +21,16 @@ const instance = axios.create({
 instance.interceptors.request.use(
   config => {
     console.log('请求拦截器');
+
+    //------ 验证declare
+    jQuery('id');
+    Dev;
+    String.prototype.getLen = function () {
+      return this.length;
+    };
+    'Jack'.getLen();
+    // ------
+
     if (config.showLoading) showLoading();
     const token = storage.get('token');
     if (token) {
