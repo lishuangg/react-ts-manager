@@ -1,18 +1,26 @@
+import { useState } from 'react';
 import { Button, Form, Input, message, App } from 'antd';
 import styles from './index.module.less';
 import api from '@/api';
 import { Login } from '@/types/api';
 import storage from '@/utils/storage';
 export default function LoginFC() {
-  const { message } = App.useApp();
+  // const { message } = App.useApp();
+
+  const [loading, setLoading] = useState(false);
+
   const onFinish = async (values: Login.params) => {
-    const data = await api.login(values)
+    setLoading(true);
+    const data: any = await api.login(values);
+    if (data.code !== 0) {
+      return message.error('登录失败');
+    }
+    setLoading(false);
     console.log('values', values);
-    console.log('data', data);
-    storage.set('token', data)
-    message.success('登录成功')
+    storage.set('token', data);
+    message.success('登录成功');
     const params = new URLSearchParams(location.search);
-    location.href = params.get('callback')  || '/welcome'
+    location.href = params.get('callback') || '/welcome';
   };
   return (
     <div className={styles.login}>
@@ -28,7 +36,7 @@ export default function LoginFC() {
           </Form.Item>
 
           <Form.Item label={null}>
-            <Button type="primary" block htmlType="submit">
+            <Button type="primary" block htmlType="submit" loading={loading}>
               登录
             </Button>
           </Form.Item>

@@ -21,7 +21,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
   config => {
     console.log('请求拦截器');
-    showLoading();
+    if (config.showLoading) showLoading();
     const token = storage.get('token');
     if (token) {
       config.headers.Authorization = 'Token::' + token;
@@ -52,8 +52,12 @@ instance.interceptors.response.use(
       storage.remove('token');
       window.location.href = '/login';
     } else if (data.code != 0) {
-      message.error(data.msg);
-      return Promise.reject(data.msg);
+      if (response.config.showError === false) {
+        return Promise.resolve(data);
+      } else {
+        message.error(data.msg);
+        return Promise.reject(data.msg);
+      }
     }
     return data.data;
   },
@@ -64,11 +68,16 @@ instance.interceptors.response.use(
   }
 );
 
+interface IConfig {
+  showLoading: boolean;
+  showError: boolean;
+}
+
 export default {
-  get<T>(url: any, params?: object): Promise<T> {
-    return instance.get(url, { params }); // get请求的参数需要params包裹
+  get<T>(url: any, params?: object, options: IConfig = { showLoading: true, showError: true }): Promise<T> {
+    return instance.get(url, { params, ...options }); // get请求的参数需要params包裹
   },
-  post<T>(url: string, params: any): Promise<T> {
-    return instance.post(url, params);
+  post<T>(url: string, params: any, options: IConfig = { showLoading: true, showError: true }): Promise<T> {
+    return instance.post(url, params, options);
   }
 };
