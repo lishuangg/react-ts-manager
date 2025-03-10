@@ -19,22 +19,22 @@ const config = {
     baseApi: '/api',
     uploadApi: 'http://api-driver.marsview.cc',
     cdn:'',
-    mock: false,
-    mockApi: 'https://www.fastmock.site/mock/9f89b4fc35334e712e27b22f008fb4d9/ts'
+    mock: true,
+    mockApi: 'https://apifoxmock.com/m1/5997068-5685565-default/api'
   },
   stg: {
     baseApi: '/api',
     uploadApi: 'http://api-driver-stg.marsview.cc',
     cdn:'',
     mock: false,
-    mockApi: 'https://www.fastmock.site/mock/9f89b4fc35334e712e27b22f008fb4d9/ts'
+    mockApi: 'https://apifoxmock.com/m1/5997068-5685565-default'
   },
   prod: {
     baseApi: '/api',
     uploadApi: 'http://api-driver.marsview.cc',
     cdn:'',
     mock: false,
-    mockApi: 'https://www.fastmock.site/mock/9f89b4fc35334e712e27b22f008fb4d9/ts'
+    mockApi: 'https://apifoxmock.com/m1/5997068-5685565-default'
   },
 };
 

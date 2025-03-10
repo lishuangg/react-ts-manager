@@ -11,7 +11,11 @@ export default function LoginFC() {
 
   const onFinish = async (values: Login.params) => {
     setLoading(true);
-    const data: any = await api.login(values);
+    const data: any = await api.login(values).catch(err => {
+      console.log('err', err);
+      setLoading(false);
+      return message.error('登录失败');
+    });
     if (data.code !== 0) {
       return message.error('登录失败');
     }
@@ -20,7 +24,7 @@ export default function LoginFC() {
     storage.set('token', data);
     message.success('登录成功');
     const params = new URLSearchParams(location.search);
-    location.href = params.get('callback') || '/welcome';
+    // location.href = params.get('callback');
   };
   return (
     <div className={styles.login}>

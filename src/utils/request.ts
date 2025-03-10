@@ -22,21 +22,11 @@ instance.interceptors.request.use(
   config => {
     console.log('请求拦截器');
 
-    //------ 验证declare
-    jQuery('id');
-    Dev;
-    String.prototype.getLen = function () {
-      return this.length;
-    };
-    'Jack'.getLen();
-    // ------
-
     if (config.showLoading) showLoading();
     const token = storage.get('token');
     if (token) {
       config.headers.Authorization = 'Token::' + token;
     }
-    config.headers.icode = '';
     if (env.mock) {
       // config.baseURL = import.meta.env.VITE_MOCK_API;
       config.baseURL = env.mockApi;
@@ -54,7 +44,7 @@ instance.interceptors.request.use(
 // 响应拦截器
 instance.interceptors.response.use(
   response => {
-    console.log('响应拦截器');
+    console.log('响应拦截器', response.data);
     hideLoading();
     const data: Result = response.data;
     if (data.code === 500001) {
@@ -69,7 +59,7 @@ instance.interceptors.response.use(
         return Promise.reject(data.msg);
       }
     }
-    return data.data;
+    return data;
   },
   (error: AxiosError) => {
     hideLoading();
