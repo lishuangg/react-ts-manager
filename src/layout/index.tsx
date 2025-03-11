@@ -3,6 +3,7 @@ import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/i
 import { Layout, Menu, theme, Watermark } from 'antd';
 import NavHeader from '@/components/NavHeader';
 import NavFooter from '@/components/NavFooter';
+import SideMenu from '@/components/Menu';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -41,19 +42,8 @@ const App: React.FC = () => {
   return (
     <Watermark content="Ant Design">
       <Layout>
-        <Sider
-          breakpoint="lg"
-          collapsedWidth="0"
-          onBreakpoint={broken => {
-            console.log(broken);
-          }}
-          onCollapse={(collapsed, type) => {
-            console.log(collapsed, type);
-          }}
-        >
-          {/* <div className="demo-logo-vertical" />
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} items={items} /> */}
-          侧边栏
+        <Sider>
+          <SideMenu />
         </Sider>
         <Layout>
           <NavHeader />
