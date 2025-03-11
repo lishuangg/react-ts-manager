@@ -11,6 +11,7 @@ export default function LoginFC() {
 
   const onFinish = async (values: Login.params) => {
     setLoading(true);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const data: any = await api.login(values).catch(err => {
       console.log('err', err);
       setLoading(false);

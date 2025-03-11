@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
 import { Layout, Menu, theme, Watermark } from 'antd';
+import NavHeader from '@/components/NavHeader';
+import NavFooter from '@/components/NavFooter';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -18,7 +20,6 @@ const App: React.FC = () => {
   // 模拟水印无法删除的原理
   useEffect(() => {
     const dom = document.getElementById('content') as HTMLDivElement;
-
     // MutationObserver 接口提供了监视对 DOM 树所做更改的能力。它被设计为旧的 Mutation Events 功能的替代品，该功能是 DOM3 Events 规范的一部分。
     const observer = new MutationObserver(function (mutationsList, observer) {
       console.log('mutationsList', mutationsList);
@@ -30,8 +31,6 @@ const App: React.FC = () => {
           span.innerText = 'hello';
           dom.appendChild(span);
           observer.observe(dom, config); // 重新开始观察
-        } else if (mutation.type === 'attributes') {
-          console.log('The ' + mutation.attributeName + ' attribute was modified.');
         }
       }
     });
@@ -52,11 +51,12 @@ const App: React.FC = () => {
             console.log(collapsed, type);
           }}
         >
-          <div className="demo-logo-vertical" />
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} items={items} />
+          {/* <div className="demo-logo-vertical" />
+          <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} items={items} /> */}
+          侧边栏
         </Sider>
         <Layout>
-          <Header style={{ padding: 0, background: colorBgContainer }} />
+          <NavHeader />
           <Content style={{ margin: '24px 16px 0' }}>
             <div
               style={{
@@ -70,7 +70,7 @@ const App: React.FC = () => {
               <span>content</span>
             </div>
           </Content>
-          <Footer style={{ textAlign: 'center' }}>Ant Design ©{new Date().getFullYear()} Created by Ant UED</Footer>
+          <NavFooter/>
         </Layout>
       </Layout>
     </Watermark>
