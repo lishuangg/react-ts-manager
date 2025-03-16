@@ -25,7 +25,7 @@ instance.interceptors.request.use(
     if (config.showLoading) showLoading();
     const token = storage.get('token');
     if (token) {
-      config.headers.Authorization = 'Token::' + token;
+      config.headers.Authorization = 'Bearer ' + token;
     }
     if (env.mock) {
       // config.baseURL = import.meta.env.VITE_MOCK_API;
@@ -59,7 +59,7 @@ instance.interceptors.response.use(
         return Promise.reject(data.msg);
       }
     }
-    return data;
+    return data.data;
   },
   (error: AxiosError) => {
     hideLoading();

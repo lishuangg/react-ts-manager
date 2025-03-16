@@ -10,22 +10,20 @@ export default function LoginFC() {
   const [loading, setLoading] = useState(false);
 
   const onFinish = async (values: Login.params) => {
-    setLoading(true);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const data: any = await api.login(values).catch(err => {
-      console.log('err', err);
+    try {
+      setLoading(true);
+      const data: any = await api.login(values);
       setLoading(false);
-      return message.error('登录失败');
-    });
-    if (data.code !== 0) {
-      return message.error('登录失败');
+      console.log('values', values);
+      storage.set('token', data);
+      message.success('登录成功');
+      setTimeout(() => {
+        const params = new URLSearchParams(location.search);
+        location.href = params.get('callback') || '/welcome';
+      });
+    } catch (error) {
+      setLoading(false);
     }
-    setLoading(false);
-    console.log('values', values);
-    storage.set('token', data);
-    message.success('登录成功');
-    const params = new URLSearchParams(location.search);
-    // location.href = params.get('callback');
   };
   return (
     <div className={styles.login}>
