@@ -4,6 +4,7 @@ import styles from './index.module.less';
 import api from '@/api';
 import { Login } from '@/types/api';
 import storage from '@/utils/storage';
+import store from '@/store';
 export default function LoginFC() {
   // const { message } = App.useApp();
 
@@ -16,6 +17,7 @@ export default function LoginFC() {
       setLoading(false);
       console.log('values', values);
       storage.set('token', data);
+      store.token = data;
       message.success('登录成功');
       setTimeout(() => {
         const params = new URLSearchParams(location.search);

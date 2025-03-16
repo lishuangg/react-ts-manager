@@ -6,7 +6,7 @@ import SideMenu from '@/components/Menu';
 import { Outlet } from 'react-router-dom';
 import api from '@/api';
 import styles from './index.module.less'
-import storage from '@/utils/storage';
+import store from '@/store';
 
 const { Content, Sider } = Layout;
 
@@ -19,7 +19,7 @@ const App: React.FC = () => {
 
   const getUserInfo = async () => {
     const data = await api.getUserInfo();
-    storage.set('userInfo', data)
+    store.updateUserInfo(data);
     console.log('data', data);
   };
 

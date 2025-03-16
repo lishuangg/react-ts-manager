@@ -3,7 +3,7 @@ import { Login , User} from '@/types/api';
 
 export default {
   login(params: Login.params) {
-    return request.post('/user/login', params, {showLoading: false, showError: true});
+    return request.post<string>('/user/login', params, {showLoading: false, showError: true});
   },
 
   getUserInfo() {
